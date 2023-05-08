@@ -4,7 +4,7 @@
 #include "bloqueRedondo.h"
 AbloqueRedondo::AbloqueRedondo() {
 	PrimaryActorTick.bCanEverTick = true;
-	vida = 2;
+	vida = 1;
 	//imprimirNombre();
 	BlockMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("BlockMesh"));
 	RootComponent = BlockMesh;

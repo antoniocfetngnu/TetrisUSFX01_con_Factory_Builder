@@ -44,7 +44,7 @@ void AbloqueNormal::reducirVida() {
 void AbloqueNormal::BeginPlay()
 {
 	Super::BeginPlay();
-	/*GetWorldTimerManager().SetTimer(DestroyHandle, this, &AbloqueNormal::DestroyActor, 5.f, false);*/
+	GetWorldTimerManager().SetTimer(DestroyHandle, this, &AbloqueNormal::DestroyActor, 5.f, false);
 }
 
 // Called every frame

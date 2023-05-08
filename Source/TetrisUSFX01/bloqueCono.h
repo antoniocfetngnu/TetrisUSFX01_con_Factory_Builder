@@ -7,7 +7,7 @@
 #include "bloqueCono.generated.h"
 
 /**
- * 
+/// BLOQUE INMORTAL
  */
 UCLASS()
 class TETRISUSFX01_API AbloqueCono : public ABlock

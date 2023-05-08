@@ -4,9 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
-#include "Piece.h"
 #include "Pieza.h"
-#include "Block.h"
 #include "Board.generated.h"
 
 UCLASS()
@@ -22,7 +20,7 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -30,21 +28,30 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	UPROPERTY()
-	APieza* CurrentPiece;
+		APieza* CurrentPiece;
 
-	void Rotate(); 
-	void MoveLeft(); 
+	void Rotate();
+	void MoveLeft();
 	void MoveRight();
-	void MoveDown(); 
+	void MoveDown();
 	void NewPiece();
 	void CheckLine();
 	void MoveDownToEnd();
 	//The Builder Actor
-	UPROPERTY(VisibleAnywhere, Category = "PrincipalAAA")
+	UPROPERTY(VisibleAnywhere, Category = "Principal")
 		class APiezaCruz* PiezaCruzBuilder;
+	UPROPERTY(VisibleAnywhere, Category = "Principal")
+		class APiezaDispersa* PiezaDispersaBuilder;
+	UPROPERTY(VisibleAnywhere, Category = "Principal")
+		class APiezaTetramino* PiezaTetraminoBuilder;
+	UPROPERTY(VisibleAnywhere, Category = "Principal")
+		class APiezaLineaPunteada* PiezaLineaPunteadaBuilder;
+	UPROPERTY(VisibleAnywhere, Category = "Principal")
+		class APieza3Bloques* Pieza3BloquesBuilder;
 	//The Engineer Actor
-	UPROPERTY(VisibleAnywhere, Category = "PrincipalAAA")
+	UPROPERTY(VisibleAnywhere, Category = "Principal")
 		class ADirectorPiezas* Director;
+
 private:
 	enum PieceStatus { PS_NOT_INITED, PS_MOVING, PS_GOT_BOTTOM };
 	PieceStatus Status = PS_NOT_INITED;

@@ -25,6 +25,6 @@ public:
 	UPROPERTY()
 	UStaticMeshComponent* BlockMesh;
 private:
-	/*FTimerHandle DestroyHandle;*/
+	FTimerHandle DestroyHandle;
 	void DestroyActor();
 };

@@ -2,11 +2,11 @@
 
 
 #include "bloqueCono.h"
-
+/// BLOQUE INMORTAL
 
 AbloqueCono::AbloqueCono() {
 	PrimaryActorTick.bCanEverTick = true;
-	vida = 3;
+	vida = 2;
 	//imprimirNombre();
 	BlockMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("BlockMesh"));
 	RootComponent = BlockMesh;
@@ -22,8 +22,8 @@ AbloqueCono::AbloqueCono() {
 		//BlockMesh->SetWorldScale3D(NuevaEscala);
 		UMaterialInterface* MyMaterial = LoadObject<UMaterialInterface>(nullptr, TEXT("Material'/Game/Mesh/M_CobbleStone_Pebble.M_CobbleStone_Pebble'"));
 		UMaterialInterface* MyMaterial1 = LoadObject<UMaterialInterface>(nullptr, TEXT("Material'/Game/Mesh/M_CobbleStone_Rough.M_CobbleStone_Rough'"));
-		BlockMesh->SetMaterial(1, MyMaterial1);
-		BlockMesh->SetMaterial(0, MyMaterial);
+		BlockMesh->SetMaterial(0, MyMaterial1);
+		BlockMesh->SetMaterial(1, MyMaterial);
 	}
 	else {
 		UE_LOG(LogTemp, Warning, TEXT("No existe la malla para Block"));

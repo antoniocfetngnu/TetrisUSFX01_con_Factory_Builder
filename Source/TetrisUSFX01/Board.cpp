@@ -6,7 +6,12 @@
 #include "DrawDebugHelpers.h"
 #include "DirectorPiezas.h"
 #include "PiezaCruz.h"
+#include "PiezaDispersa.h"
+#include "PiezaTetramino.h"
+#include "PiezaLineaPunteada.h"
+#include "Pieza3Bloques.h"
 #include "Pieza.h"
+
 #include "Kismet/GameplayStatics.h"
 // Sets default values
 
@@ -23,10 +28,14 @@ void ABoard::BeginPlay()
 	Super::BeginPlay();
     /*CurrentPiece->puntuacion = 0;*/
     PiezaCruzBuilder = GetWorld()->SpawnActor<APiezaCruz>(APiezaCruz::StaticClass());
+    PiezaDispersaBuilder = GetWorld()->SpawnActor<APiezaDispersa>(APiezaDispersa::StaticClass());
+    PiezaTetraminoBuilder = GetWorld()->SpawnActor<APiezaTetramino>(APiezaTetramino::StaticClass()); 
+    PiezaLineaPunteadaBuilder = GetWorld()->SpawnActor<APiezaLineaPunteada>(APiezaLineaPunteada::StaticClass());
+    Pieza3BloquesBuilder = GetWorld()->SpawnActor<APieza3Bloques>(APieza3Bloques::StaticClass());
     Director = GetWorld()->SpawnActor<ADirectorPiezas>(ADirectorPiezas::StaticClass());
-    Director->AsignarConstructorDePieza(PiezaCruzBuilder);
+   
     
-    for (TActorIterator<APiece> it(GetWorld()); it; ++it)
+    for (TActorIterator<APieza> it(GetWorld()); it; ++it)
     {
         
         if (it->GetFName() == TEXT("DissmissPieces"))
@@ -153,7 +162,31 @@ void ABoard::NewPiece()
     {
         UE_LOG(LogTemp, Warning, TEXT("NO HAY CURRENT PIECE!!!!"));
     }
-    
+    int selectorBuilders = FMath::RandRange(0, 7);
+    switch (selectorBuilders)
+    {
+    case 0:
+    case 1:
+    case 2:
+        Director->AsignarConstructorDePieza(PiezaTetraminoBuilder);
+        break;
+    case 3:
+    case 4:
+        Director->AsignarConstructorDePieza(Pieza3BloquesBuilder);
+        break;
+    case 5:
+        Director->AsignarConstructorDePieza(PiezaLineaPunteadaBuilder);
+        break;
+    case 6:
+        Director->AsignarConstructorDePieza(PiezaCruzBuilder);
+        break;
+    case 7:
+        Director->AsignarConstructorDePieza(PiezaDispersaBuilder);
+        break;
+    default:
+        Director->AsignarConstructorDePieza(PiezaCruzBuilder);
+        break;
+    }
     //PiezaCruzBuilder = GetWorld()->SpawnActor<APiezaCruz>(APiezaCruz::StaticClass());
     /*Director = GetWorld()->SpawnActor<ADirectorPiezas>(ADirectorPiezas::StaticClass());*/
     /*Director->AsignarConstructorDePieza(PiezaCruzBuilder);*/
@@ -229,7 +262,7 @@ void ABoard::CheckLine()
                 ((ABlock*)actorPrueba)->reducirVida();
                 //actorPrueba->Destroy();  //OJO esto tenemos que eliminarlo una vez corregido linea completa
             }
-            //MoveDownFromLine(z);
+            MoveDownFromLine(z);
 
             /*if (LineRemoveSoundCue)
             {
