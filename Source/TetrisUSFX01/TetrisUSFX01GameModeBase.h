@@ -10,10 +10,13 @@ UCLASS()
 class TETRISUSFX01_API ATetrisUSFX01GameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
-
+private:
+	void crearNuevoBoard();
 protected:
 	virtual void BeginPlay() override;
 
 public:
 	ATetrisUSFX01GameModeBase();
+	FTimerHandle crearBoard;
+	//void GetLevelName();
 };

@@ -33,7 +33,8 @@ void ABoard::BeginPlay()
     PiezaLineaPunteadaBuilder = GetWorld()->SpawnActor<APiezaLineaPunteada>(APiezaLineaPunteada::StaticClass());
     Pieza3BloquesBuilder = GetWorld()->SpawnActor<APieza3Bloques>(APieza3Bloques::StaticClass());
     Director = GetWorld()->SpawnActor<ADirectorPiezas>(ADirectorPiezas::StaticClass());
-   
+    //CREACION DE FACTORY DE NIVELES
+    FabricaEscenas = GetWorld()->SpawnActor<AFactoryNivelesConcreta>(AFactoryNivelesConcreta::StaticClass());
     
     for (TActorIterator<APieza> it(GetWorld()); it; ++it)
     {
@@ -99,8 +100,21 @@ void ABoard::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
     PlayerInputComponent->BindAction("MoveLeft", IE_Pressed, this, &ABoard::MoveLeft);
     PlayerInputComponent->BindAction("MoveRight", IE_Pressed, this, &ABoard::MoveRight);
     PlayerInputComponent->BindAction("MoveDownToEnd", IE_Pressed, this, &ABoard::MoveDownToEnd);
+    PlayerInputComponent->BindAction("CambiarNivel1", IE_Pressed, this, &ABoard::CambiarNivel1);
+    PlayerInputComponent->BindAction("CambiarNivel2", IE_Pressed, this, &ABoard::CambiarNivel2);
+    PlayerInputComponent->BindAction("CambiarNivel3", IE_Pressed, this, &ABoard::CambiarNivel3);
+    /*PlayerInputComponent->BindAction("CambiarNivel3", IE_Pressed, this, &ABoard::CambiarNivel1);*/
   
 
+}
+void ABoard::CambiarNivel1() {
+    FabricaEscenas->cargarNivel("MapaTetris");
+}
+void ABoard::CambiarNivel2() {
+    FabricaEscenas->cargarNivel("MapaTetris2");
+}
+void ABoard::CambiarNivel3() {
+    FabricaEscenas->cargarNivel("MapaTetris3");
 }
 
 void ABoard::Rotate()

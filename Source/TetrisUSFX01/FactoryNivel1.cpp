@@ -10,12 +10,10 @@ ABlock* AFactoryNivel1::CrearBloque(FString nombreBloque)
 {
 	//Select which potion to spawn depending on the passed string
 	if (nombreBloque.Equals("dura")) {
-		return GetWorld()->SpawnActor<AbloqueCono>
-			(AbloqueCono::StaticClass());
+		return GetWorld()->SpawnActor<AbloqueCono>(AbloqueCono::StaticClass());
 	}
 	else if (nombreBloque.Equals("temporal")) {
-		return GetWorld()->SpawnActor<AbloqueNormal>
-			(AbloqueNormal::StaticClass());
+		return GetWorld()->SpawnActor<AbloqueNormal>(AbloqueNormal::StaticClass());
 	}
 	else if (nombreBloque.Equals("color")) {
 		return GetWorld()->SpawnActor<AbloqueRedondo>(AbloqueRedondo::StaticClass());

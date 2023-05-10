@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
 #include "Pieza.h"
+#include "FactoryNivelesConcreta.h"
 #include "Board.generated.h"
 
 UCLASS()
@@ -15,6 +16,7 @@ class TETRISUSFX01_API ABoard : public APawn
 public:
 	// Sets default values for this pawn's properties
 	ABoard();
+	AFactoryNivelesConcreta* FabricaEscenas; //Fabrica de escenarios con FACTORY
 
 protected:
 	// Called when the game starts or when spawned
@@ -37,6 +39,9 @@ public:
 	void NewPiece();
 	void CheckLine();
 	void MoveDownToEnd();
+	void CambiarNivel1();
+	void CambiarNivel2();
+	void CambiarNivel3();
 	//The Builder Actor
 	UPROPERTY(VisibleAnywhere, Category = "Principal")
 		class APiezaCruz* PiezaCruzBuilder;
