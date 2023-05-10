@@ -1,6 +1,7 @@
 # TetrisUSFX01
-Autores: Calderón Flores Enrique Antonio
-         Rua Echalar Juan Manuel
+## Autores: 
+1. Calderón Flores Enrique Antonio
+2. Rua Echalar Juan Manuel
          
 ## Laboratorios 6,7,8
 
